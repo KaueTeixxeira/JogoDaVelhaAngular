@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+}
+  
+  hr {
+    font-weight: bold;
+    height: 3px;
+    background: black;
+    margin-bottom: 10px;
+  }
+  
+  .jogo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+.jogo button {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 50px;
+    background: #f7f7f7;
+}
+
+.div-palavraMeio {
+    padding: 10px;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+}
