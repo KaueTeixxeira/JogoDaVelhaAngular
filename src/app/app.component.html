@@ -1,19 +1,35 @@
+<div class="div-alert">
+<div #alert class="alert" id="alert">
+  <span class="closebtn" (click)="fechaModal()">&times;</span> 
+  {{fraseVencedor}}
+  <!-- <strong>Parabéns!</strong> O '{{vencedor}}' é o vencedor! -->
+</div>
+</div>
 <div class="div-palavraMeio">
   <h1>JOGO DA VELHA</h1>
 </div>
+
     <div class="jogo" >
       <button *ngFor="let i of posicoes; let contador = index" (click)="mostraIndex(contador)" >{{i}}</button>
     </div>
     <h2 class="jogadorDaVez">
       JOGADOR DA VEZ : {{jogadorDaVez}}<br>
+      <hr />
+      
       PLACAR DE VITÓRIAS: <br>
       X: {{vitoriasX}}<br>
-      Y: {{vitoriasY}}
+      O: {{vitoriasY}}
     </h2>
-
+    <hr />
+    
+    <div class="div-botoes">
     <button (click)="resetaPlacar()" >
       RESETAR PLACAR
     </button>
+    <button (click)="limparCampos()">
+      LIMPAR CAMPOS
+    </button>
+  </div>
     
 
 

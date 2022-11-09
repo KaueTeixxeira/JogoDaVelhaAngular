@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
   rodadas: number = 0;
   vitX: number = JSON.parse(localStorage.getItem("vitoriasX")) || 0
   vitY: number = JSON.parse(localStorage.getItem("vitoriasY")) || 0
+  fraseVencedor: string = "";
+  vencedor: string = "";
 
   ngOnInit(): void {
     console.log("sometimes i feel that i cant die");
@@ -35,17 +37,25 @@ export class AppComponent implements OnInit {
 
   mostraIndex(index: number) {
     
-   this.rodadas ++;
     if (this.posicoes[index] == "") {
+      this.rodadas ++;
       this.posicoes[index] = this.jogadorDaVez
       this.escolhidos.push(index)
       this.colocaJogada(index)
       if (this.verificaVencedor(this.jogadorDaVez)) {
+        this.vencedor = this.jogadorDaVez;
+        this.fraseVencedor = "Vencedor foi o " + this.vencedor
         this.encerraJogo();
+        this.abriModal();
+        setTimeout(this.fechaModal, 5000);
       }
       this.verificaVez();
     } else {
       console.log("ja tem amigao")
+    }
+    if (this.rodadas == 9 && this.vencedor == "") {
+      this.fraseVencedor = "Infelizmente deu velha, tente novamente!";
+      this.abriModal()
     }
   }
 
@@ -76,7 +86,6 @@ export class AppComponent implements OnInit {
             } 
           }
           if (contadorDeAcertos == 3){
-            alert("O 'X' é o vencedor !")
             this.vitoriasX ++;
             localStorage.setItem("vitoriasX", JSON.stringify(this.vitoriasX))
             return true;
@@ -91,7 +100,6 @@ export class AppComponent implements OnInit {
           } 
         }
         if (contadorDeAcertos == 3){
-          alert("O 'O' é o vencedor !")
           this.vitoriasY ++;
           localStorage.setItem("vitoriasY", JSON.stringify(this.vitoriasY))
           return true;
@@ -108,7 +116,13 @@ export class AppComponent implements OnInit {
       }
     }
   }
+  xganhou(){
+  alert("O 'X' ganhou !")
+  }
 
+  yganhou(){
+    alert("O 'O' ganhou !")
+    }
 
   vitoriasX: number = JSON.parse(localStorage.getItem("vitoriasX")) || 0
   vitoriasY: number = JSON.parse(localStorage.getItem("vitoriasY")) || 0
@@ -119,6 +133,17 @@ export class AppComponent implements OnInit {
     window.location.reload();
   }
 
+  fechaModal(){
+    var fecAlert = document.getElementById('alert') ;
+    fecAlert.style.opacity = '0';
+    
+  }
+  abriModal(){
+    var abriAlert = document.getElementById('alert') ;
+    abriAlert.style.opacity = '1';
+  }
 
- 
+  limparCampos(){
+    window.location.reload();
+  }
 }
